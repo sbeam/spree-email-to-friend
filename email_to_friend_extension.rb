@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Uncomment this if you reference any of your controllers in activate
-require_dependency 'application_controller'
+#require_dependency 'application_controller'
 
 class EmailToFriendExtension < Spree::Extension
   version "1.0"
@@ -15,16 +15,5 @@ class EmailToFriendExtension < Spree::Extension
   end
 
   def activate
-    Admin::ConfigurationsController.class_eval do
-      before_filter :add_captcha_settings_links, :only => :index
-
-      def add_captcha_settings_links
-        @extension_links << {
-          :link => admin_captcha_settings_path,
-          :link_text => t('captcha.captcha_settings'),
-          :description => t('captcha.manage_keys')
-        }
-      end
-    end
   end
 end
