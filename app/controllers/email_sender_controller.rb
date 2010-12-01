@@ -19,7 +19,7 @@ class EmailSenderController < Spree::BaseController
             verify_recaptcha(:private_key => Spree::Captcha::Config[:private_key])
           flash[:notice] = I18n.t('email_to_friend.mail_sent_to', :email => @mail_to_friend.recipient_email)
           flash[:notice] << @template.link_to(I18n.t('email_to_friend.send_to_other'),
-                                              email_to_friend_path(@object.class.name, @object))
+                                              email_to_friend_path(@object.class.name.downcase, @object))
 
           ToFriendMailer.deliver_mail_to_friend(@object, @mail_to_friend)
           redirect_to @object
